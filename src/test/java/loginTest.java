@@ -1,3 +1,4 @@
+import Pages.loginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,9 +19,9 @@ public class loginTest {
         String expectedTitle = "Products";
 
         driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
+        loginPage.userNameField(driver).sendKeys("standard_user");
+        loginPage.passwordField(driver).sendKeys("secret_sauce");
+        loginPage.loginButton(driver).click();
         String actualTitle = driver.findElement(By.xpath("//span[@class='title']")).getText();
         Assert.assertEquals(actualTitle, expectedTitle);
         driver.close();
