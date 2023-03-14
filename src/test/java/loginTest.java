@@ -1,3 +1,4 @@
+import Helpers.createDriver;
 import Pages.loginPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -12,12 +13,8 @@ public class loginTest {
     @Test
     public static void LoginTest() {
 
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*"); //to pass security issues
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = createDriver.newChromeDriver();
         String expectedTitle = "Products";
-
         driver.get("https://www.saucedemo.com/");
         loginPage.userNameField(driver).sendKeys("standard_user");
         loginPage.passwordField(driver).sendKeys("secret_sauce");
