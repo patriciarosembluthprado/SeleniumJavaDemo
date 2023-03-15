@@ -27,21 +27,19 @@ public class purchaseOrder {
         WebDriver driver = createDriver.newChromeDriver(); //create chrome driver
 
         String expectedCompleteText = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
-        loginPage.userNameField(driver).sendKeys("standard_user");
-        loginPage.passwordField(driver).sendKeys("secret_sauce");
-        loginPage.loginButton(driver).click();
-        listOfProducts = productsPage.selectProducts(driver);
-        for (int i = 0; i < listOfProducts.size(); i++){
-            listOfProducts.get(i).click();
-        }
-        productsPage.selectCart(driver).click();
-        shoppingCartPage.checkoutButton(driver).click();
-        checkoutPage.firstNameField(driver).sendKeys("Test");
-        checkoutPage.lastNameField(driver).sendKeys("Test");
-        checkoutPage.zipCodeField(driver).sendKeys("1234");
-        checkoutPage.continueButton(driver).click();
-        overviewPage.finishButton(driver).click();
-        String actualCompleteText = checkoutCompletePage.completeTextField(driver).getText();
+        loginPage.enterUserName(driver);
+        loginPage.enterPassword(driver);
+        loginPage.clickLogin(driver);
+        productsPage.addProductsToCart(driver);
+        productsPage.selectShoppingCartIcon(driver);
+        shoppingCartPage.clickCheckoutButton(driver);
+        checkoutPage.enterFirstName(driver);
+        checkoutPage.enterLastName(driver);
+        checkoutPage.enterZipCode(driver);
+        checkoutPage.clickContinueButton(driver);
+        overviewPage.clickFinishButton(driver);
+
+        String actualCompleteText = checkoutCompletePage.getCompletedPurchaseText(driver);
         Assert.assertEquals(expectedCompleteText, actualCompleteText);
         driver.close();
         driver.quit();

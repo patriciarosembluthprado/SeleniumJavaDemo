@@ -22,9 +22,16 @@ public class productsPage {
         return listOfProducts;
     }
 
-    public static WebElement selectCart(WebDriver driver){
-        element = driver.findElement(By.id(productsLocators.shoppingCartId));
-        return element;
+    public static void addProductsToCart(WebDriver driver){
+        selectProducts(driver);
+        for (int i = 0; i < listOfProducts.size(); i++){
+            listOfProducts.get(i).click();
+        }
+    }
+
+    public static WebDriver selectShoppingCartIcon(WebDriver driver){
+        driver.findElement(By.id(productsLocators.shoppingCartId)).click();
+        return driver;
     }
 
 

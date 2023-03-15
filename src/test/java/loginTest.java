@@ -16,9 +16,9 @@ public class loginTest {
         WebDriver driver = createDriver.newChromeDriver();
         String expectedTitle = "Products";
         driver.get("https://www.saucedemo.com/");
-        loginPage.userNameField(driver).sendKeys("standard_user");
-        loginPage.passwordField(driver).sendKeys("secret_sauce");
-        loginPage.loginButton(driver).click();
+        loginPage.enterUserName(driver);
+        loginPage.enterPassword(driver);
+        loginPage.clickLogin(driver);
         String actualTitle = driver.findElement(By.xpath("//span[@class='title']")).getText();
         Assert.assertEquals(actualTitle, expectedTitle);
         driver.close();
