@@ -1,6 +1,9 @@
 import Helpers.createDriver;
 import Locators.checkoutCompleteLocators;
 import Pages.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +18,8 @@ public class purchaseOrder {
     static List<WebElement> listOfProducts = new ArrayList<WebElement>();
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Verify the user can purchase an order")
     public static void purchaseOrderTest(){
         WebDriver driver = createDriver.newChromeDriver();
 
@@ -36,6 +41,8 @@ public class purchaseOrder {
         overviewPage.finishButton(driver).click();
         String actualCompleteText = checkoutCompletePage.completeTextField(driver).getText();
         Assert.assertEquals(expectedCompleteText, actualCompleteText);
+        driver.close();
+        driver.quit();
 
     }
 }
