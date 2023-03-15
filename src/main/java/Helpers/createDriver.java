@@ -7,12 +7,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class createDriver {
     static WebDriver driver = null;
+    public static String URL;
 
     public static WebDriver newChromeDriver(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*"); //to pass security issues
         driver = new ChromeDriver(options);
+        driver.navigate().to(URL);
         return driver;
     }
 }

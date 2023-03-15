@@ -1,3 +1,4 @@
+import Configuration.propertiesFile;
 import Helpers.createDriver;
 import Locators.checkoutCompleteLocators;
 import Pages.*;
@@ -21,9 +22,10 @@ public class purchaseOrder {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify the user can purchase an order")
     public static void purchaseOrderTest(){
-        WebDriver driver = createDriver.newChromeDriver();
 
-        driver.get("https://www.saucedemo.com/");
+        propertiesFile.getEnvProperties(); //Set URL from env file
+        WebDriver driver = createDriver.newChromeDriver(); //create chrome driver
+
         String expectedCompleteText = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
         loginPage.userNameField(driver).sendKeys("standard_user");
         loginPage.passwordField(driver).sendKeys("secret_sauce");
